@@ -11,6 +11,8 @@ public class KeySprite : MonoBehaviour
 
     public AudioSource audioSource;
 
+    public MaskedParticle maskedParticle;
+
     private SpriteRenderer spriteRenderer;
 
     private bool keyPressed;
@@ -41,6 +43,9 @@ public class KeySprite : MonoBehaviour
             //spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1.0f);
             audioSource.volume = 1;
             audioSource.Play();
+
+            maskedParticle.TargetPosition = new Vector3(transform.position.x*1.5f, transform.position.y*1.5f, maskedParticle.transform.position.z);
+
             yield return new WaitUntil(() => Input.GetKeyUp(keyCode));
             Debug.Log("KeyReleased");
             if(audioRoutine != null)
