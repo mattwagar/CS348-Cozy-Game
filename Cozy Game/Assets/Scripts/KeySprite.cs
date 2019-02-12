@@ -7,6 +7,10 @@ public class KeySprite : MonoBehaviour
 {
     public KeyCode keyCode;
     
+    public ParticleSystem particleEffect;
+
+    public AudioSource audioSource;
+
     private SpriteRenderer spriteRenderer;
 
     private bool keyPressed;
@@ -15,6 +19,7 @@ public class KeySprite : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,9 +34,12 @@ public class KeySprite : MonoBehaviour
         }
 
         if(keyPressed){
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1.0f); 
+            //spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1.0f);
+            particleEffect.Play();
+            //Might add some stuff here to modify volume on keypresses to be more dynamic
+            audioSource.Play();
         }  else {
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.0f); 
+            //spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.0f);
         }
     }
 
